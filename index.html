@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Country Explorer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 text-gray-800 font-sans leading-normal">
+    <header class="bg-indigo-600 text-white text-center py-6 px-4">
+      <h1 class="text-3xl font-bold">Country Explorer</h1>
+      <p class="text-sm mt-1 opacity-90">
+        Browse countries and save your favorites
+      </p>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 pt-5 pb-10">
+      <section class="flex flex-wrap gap-3">
+        <input
+          type="search"
+          id="searchInput"
+          placeholder="Search by country name"
+          aria-label="Search countries"
+          class="flex-1 min-w-[250px] px-3 py-2.5 border border-gray-300 rounded bg-white"
+        />
+        <select
+          id="regionSelect"
+          aria-label="Filter by region"
+          class="px-3 py-2.5 border border-gray-300 rounded bg-white"
+        >
+          <option value="all">All regions</option>
+          <option>Africa</option>
+          <option>Americas</option>
+          <option>Antarctic</option>
+          <option>Asia</option>
+          <option>Europe</option>
+          <option>Oceania</option>
+        </select>
+      </section>
+
+      <nav class="flex gap-2 mt-4 mb-3">
+        <button
+          id="tabAll"
+          data-view="all"
+          class="tab px-4 py-2 text-sm border border-indigo-600 rounded cursor-pointer bg-indigo-600 text-white"
+        >
+          All countries
+        </button>
+        <button
+          id="tabFav"
+          data-view="favorites"
+          class="tab px-4 py-2 text-sm border border-indigo-600 rounded cursor-pointer bg-white text-indigo-600"
+        >
+          Favorites (<span id="favCount">0</span>)
+        </button>
+      </nav>
+
+      <p id="resultCount" class="text-sm text-gray-500 mb-3 min-h-[20px]"></p>
+
+      <div id="status" class="hidden" role="status"></div>
+
+      <section
+        id="grid"
+        class="grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-4"
+      ></section>
+    </main>
+
+    <dialog
+      id="detailsModal"
+      class="m-auto p-0 rounded-lg w-[min(440px,92vw)] overflow-hidden backdrop:bg-black/55"
+    >
+      <button
+        id="closeModal"
+        aria-label="Close"
+        class="absolute top-2 right-2.5 z-10 w-8 h-8 rounded-full bg-white text-2xl leading-none cursor-pointer"
+      >
+        &times;
+      </button>
+      <div id="modalBody"></div>
+    </dialog>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
